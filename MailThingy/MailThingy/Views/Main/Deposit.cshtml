@@ -1,0 +1,36 @@
+﻿@using MailThingy.Models
+@model MailThingy.Models.Deposit
+@{
+	Layout = "_Frame.cshtml";
+}
+<h3>Deposit Message</h3>
+@using (Html.BeginForm("Deposit", "Main"))
+{
+	<div class="form-group">
+		@Html.LabelFor(x => x.Employee)
+		@Html.TextBoxFor(x => x.Employee, new { @class = "form-control" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.Username)
+		@Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+	</div>
+	<div class="form-group date-time-group">
+		@Html.LabelFor(x => x.Time)
+		@Html.TextBoxFor(x => x.Time, new { @class = "form-control date-time" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.Amount)
+		@Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.Kind)
+		@Html.DropDownListFor(x => x.Kind, DepositKinds.Kinds().Select(x => new SelectListItem()
+		{
+			Text = x.Item2,
+			Value = x.Item1.ToString()
+		}), new { @class = "form-control" })
+	</div>
+	<div  class="form-group">
+		<input type="submit" class="btn btn-primary submit-button"/>
+	</div>
+}

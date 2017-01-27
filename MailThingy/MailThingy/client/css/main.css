@@ -1,0 +1,17 @@
+﻿.b-page {
+
+	/* if it's too wide it looks ugly '*/
+	max-width: 600px;
+
+	/* center it */
+	margin: auto;
+}
+
+.submit-button {
+	width: 100%;
+}
+
+.date-time-group {
+	/* This is required for datetimepicker to work correctly */
+	position: relative;
+}

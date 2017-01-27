@@ -1,0 +1,41 @@
+﻿@using MailThingy.Models
+@{
+	ViewBag.Title = "Index";
+	Layout = @"..\Shared\_Layout.cshtml";
+	var order = new[] {
+		"Connection",
+		"Deposit"
+	}.ToDictionary(x => x, x => x.Equals(ViewContext.RouteData.Values["action"]) ? "active" : "");
+}
+
+<div class="container b-page">
+	<ul class="nav nav-tabs">
+
+		<li role="presentation" class="@order["Connection"]">
+			<a href="@Url.Action("Connection")">
+				Connection Message
+			</a>
+		</li>
+
+
+		<li role="presentation" class="@order["Deposit"]">
+			<a href="@Url.Action("Deposit")">
+				Deposit Message
+			</a>
+		</li>
+
+	</ul>
+	@if (ViewBag.Message != null) {
+		var msg = (OperationResult)ViewBag.Message;
+		var cls = msg.Kind == ResultKind.Success ? "alert-success" : "alert-danger";
+		<div class="alert @cls">
+			@msg.Message
+		</div>
+	}
+
+	<div>
+		@RenderBody()
+	</div>
+</div>
+
+
